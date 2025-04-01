@@ -1,0 +1,30 @@
+// This is your Prisma schema file for Supabase,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Song {
+  id                          String   @id @default(uuid())
+  originalSongYoutubeLink     String?
+  originalSongName            String?
+  originalSongSinger          String?
+  originalSongLyricsFiller    String?
+  originalSongLyrics          String?
+  originalSongAuthor          String?
+  alternativeSongYoutubeLink  String?
+  alternativeSongName         String?
+  alternativeSongSinger       String?
+  alternativeSongLyricsFiller String?
+  alternativeSongLyrics       String?
+  createdAt                   DateTime @default(now())
+  updatedAt                   DateTime @updatedAt
+
+  @@map("songs") // Maps to the "songs" table in Supabase
+}
