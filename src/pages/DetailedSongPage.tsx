@@ -89,6 +89,14 @@ export function DetailedSongPage() {
                   <label className="block text-sm font-medium text-slate-500">Singer</label>
                   <div className="mt-1 text-lg">{song.originalSongSinger}</div>
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-500">Author</label>
+                  <div className="mt-1 text-lg">{song.originalSongAuthor}</div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-500">Filler</label>
+                  <div className="mt-1 text-lg">{song.originalSongLyricsFiller}</div>
+                </div>
                 <Accordion>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
@@ -116,7 +124,12 @@ export function DetailedSongPage() {
                     {song.originalSongLyrics&&(
                       <div>
                         <label className="block text-sm font-medium text-slate-500">Original Lyrics</label>
-                        <div className="mt-1 text-sm">{song.originalSongLyrics.split('\n').map((line, index) => (<p key={index}>{line}</p>))}</div>
+                        <div className="mt-1 text-sm">{song.originalSongLyrics.split('\n').map((line, index) => {
+                          if(line===""){
+                            return <br key={index} className='mb-4'/>;
+                          }
+                          return <p key={index}>{line}</p>;
+                        })}</div>
                       </div>
                     )}
                   </div>
@@ -136,6 +149,10 @@ export function DetailedSongPage() {
                 <div>
                   <label className="block text-sm font-medium text-slate-500">Singer</label>
                   <div className="mt-1 text-lg">{song.alternativeSongSinger}</div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-500">Filler</label>
+                  <div className="mt-1 text-lg">{song.alternativeSongLyricsFiller}</div>
                 </div>
                 <Accordion defaultExpanded>
                   <AccordionSummary
@@ -164,7 +181,10 @@ export function DetailedSongPage() {
                 {song.alternativeSongLyrics&&(
                   <div>
                     <label className="block text-sm font-medium text-slate-500">Alternative Lyrics</label>
-                    <div className="mt-1 text-sm">{song.alternativeSongLyrics.split('\n').map((line, index) => (<p key={index}>{line}</p>))}</div>
+                    <div className="mt-1 text-sm">{song.alternativeSongLyrics.split('\n').map((line, index) =>  {if(line===""){
+                            return <br key={index} className='mb-4'/>;
+                          }
+                          return <p key={index}>{line}</p>;})}</div>
                   </div>
                 )}
                 </div>
