@@ -9,6 +9,7 @@ import type { SearchParams, Song, SongFormData } from '../types/Song';
 import { Link } from 'react-router-dom';
 import path from 'path'
 import {BASE_URL} from '../constant'
+const adsenseClientId = import.meta.env.VITE_ADSENSE_CLIENT_ID;
 
 const columns: GridColDef[] = [
   {
@@ -95,7 +96,7 @@ export function HomePage() {
         {/* Top Ad */}
         <div className="mb-8">
           <AdSense
-            client="YOUR-CLIENT-ID"
+            client={adsenseClientId}
             slot="YOUR-SLOT-ID"
             style={{ display: 'block', textAlign: 'center' }}
           />
@@ -173,7 +174,7 @@ export function HomePage() {
         {/* Bottom Ad */}
         <div className="mt-8 mb-8">
           <AdSense
-            client="YOUR-CLIENT-ID"
+            client={adsenseClientId}
             slot="YOUR-SLOT-ID-2"
             style={{ display: 'block', textAlign: 'center' }}
           />

@@ -7,6 +7,7 @@ import { Accordion, AccordionSummary } from '@mui/material';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+const adsenseClientId = import.meta.env.VITE_ADSENSE_CLIENT_ID;
 
 async function fetchSongById(id: string): Promise<Song> {
   const { data, error } = await supabase
@@ -48,7 +49,7 @@ export function DetailedSongPage() {
         {/* Top Ad */}
         <div className="mb-8">
           <AdSense
-            client="YOUR-CLIENT-ID"
+            client={adsenseClientId}
             slot="YOUR-SLOT-ID-3"
             style={{ display: 'block', textAlign: 'center' }}
           />
@@ -199,7 +200,7 @@ export function DetailedSongPage() {
         {/* Bottom Ad */}
         <div className="mt-8">
           <AdSense
-            client="YOUR-CLIENT-ID"
+            client={adsenseClientId}
             slot="YOUR-SLOT-ID-4"
             style={{ display: 'block', textAlign: 'center' }}
           />

@@ -45,7 +45,18 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-
+      - name: Find and Replace in index.html
+        run: |
+          cp ./index.html ./index.html.backup
+          
+          sed -i 's/YOUR-CLIENT-ID/${{ secrets.VITE_ADSENSE_CLIENT_ID }}/g' ./index.html
+          
+          # Optional: Display diff to verify changes (remove in production)
+          echo "Changes made:"
+          diff ./index.html.backup ./index.html || true
+          
+          # Remove backup
+          rm ./index.html.backup
       - name: Install dependencies
         run: pnpm install
 
@@ -54,6 +65,7 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_ADSENSE_CLIENT_ID: ${{ secrets.VITE_ADSENSE_CLIENT_ID }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
