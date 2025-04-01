@@ -17,7 +17,7 @@ Create, update, delete song records
 
 Authentication
 
-Google Sign-In integration
+Supabase auth
 
 Admin-only access to management features
 
@@ -36,24 +36,17 @@ Rendering: Fully client-side
 Hosting: AWS S3 (static site)
 
 🌐 Backend
-API: AWS Lambda (Node.js with TypeScript)
-
-Auth Middleware: Google token verification
-
-API Gateway: For exposing Lambda endpoints
+Supabase
 
 🗄️ Database
-Primary Store: AWS DynamoDB
+Supabase managed postgressql
 
-Performance: Integrated with DynamoDB DAX (for search caching)
 
-☁️ Infrastructure
-IaC Tool: Terraform
 
 Provision: S3, Lambda, API Gateway, DynamoDB, DAX, IAM roles
 
 🔒 Authentication
-Provider: Google Sign-In (OAuth)
+Provider: Supabase
 
 Roles: Admin access for CRUD
 
@@ -69,9 +62,7 @@ Test: Run Jest and Cypress tests on PRs
 
 Deploy:
 
-Deploy frontend to S3 on main branch push
+Deploy frontend to Github pages
 
-Deploy Lambda functions using Terraform
-
-Secrets: Manage via GitHub Secrets (Google client keys, AWS credentials)
+Secrets: Manage via GitHub Secrets (Google client keys, Supabase credentials)
 
