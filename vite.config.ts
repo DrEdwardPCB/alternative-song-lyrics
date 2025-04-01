@@ -12,5 +12,5 @@ export default defineConfig({
       protocolImports: true,
     }),
   ],
-  base: "/alternative-song-lyrics/"
+  base: "/"
 })

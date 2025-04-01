@@ -1,1 +1,1 @@
-export const BASE_URL= "/alternative-song-lyrics/"
+export const BASE_URL= "/"
