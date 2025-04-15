@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderCellParams, GridSortModel } from '@mui/x-data-grid';
 import { SearchBar } from '../components/SearchBar';
 import { AdSense } from '../components/AdSense';
 import { fetchSongs } from '../api/songs';
-import type { SearchParams, Song, SongFormData } from '../types/Song';
+import type { SearchParams, Song } from '../types/Song';
 import { Link } from 'react-router-dom';
 import path from 'path'
 import {BASE_URL} from '../constant'
@@ -80,16 +80,20 @@ export function HomePage() {
     originalSongSinger: '',
     alternativeSongSinger: ''
   })
-
-  const { data: songs = [], isLoading, error } = useQuery<Song[]>({
-    queryKey: ['songs', searchParams],
-    queryFn: () => fetchSongs(searchParams),
+  const [paginationModel, setPaginationModel] = useState({
+    page: 0,
+    pageSize: 30,
   });
-
+  const [sortModel, setSortModel] = useState<GridSortModel>([]);
+  const { data, isLoading, error } = useQuery<{total:number,songs:Song[]}>({
+    queryKey: ['songs', searchParams, paginationModel, sortModel],
+    queryFn: () => fetchSongs(searchParams,paginationModel,sortModel),
+  });
+  console.log(data)
   return (
     <div className="min-h-screen bg-gray-50 py-8 w-[100vw]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-slate-900 mb-8">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <h1 className="mb-8 text-3xl font-bold text-slate-900">
           Alternative Song Lyrics
         </h1>
 
@@ -102,7 +106,7 @@ export function HomePage() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 gap-6 mb-8 md:grid-cols-2">
           <SearchBar
             label="Original Song Name"
             field="originalSongName"
@@ -138,22 +142,28 @@ export function HomePage() {
         </div>
 
         {error ? (
-          <div className="text-center text-red-600 mb-4">
+          <div className="mb-4 text-center text-red-600">
             Error loading songs. Please try again.
           </div>
         ) : (
-          <div className="bg-white shadow rounded-lg overflow-hidden mb-8">
+          <div className="mb-8 overflow-hidden bg-white rounded-lg shadow">
             <DataGrid<Song>
-              rows={songs}
+              rowCount={data?.total??0}
+              rows={data?.songs??[]}
               columns={columns}
               loading={isLoading}
               autoHeight
               getRowId={(row: Song) => row.id}
               onRowClick={(params) => navigate(path.join(BASE_URL, "/song", params.id.toString()))}
-              initialState={{
-                pagination: { paginationModel: { pageSize: 10 } },
-              }}
-              pageSizeOptions={[10, 25, 50]}
+              onSortModelChange={setSortModel}
+              onPaginationModelChange={setPaginationModel}
+              paginationModel={paginationModel}
+              sortModel={sortModel}
+              pageSizeOptions={[10,30,50,100]}
+              disableColumnFilter
+              pagination
+              paginationMode="server"
+              sortingMode="server"
               sx={{
                 '& .MuiDataGrid-cell': {
                   borderBottom: '1px solid #f3f4f6',
@@ -181,7 +191,7 @@ export function HomePage() {
         </div>
 
         {/* Footer */}
-        <footer className="mt-12 border-t border-gray-200 pt-8">
+        <footer className="pt-8 mt-12 border-t border-gray-200">
           <div className="flex justify-center space-x-8">
             <Link
               to="/about"
@@ -202,7 +212,7 @@ export function HomePage() {
               Management
             </Link>
           </div>
-          <p className="mt-4 text-center text-sm text-slate-500">
+          <p className="mt-4 text-sm text-center text-slate-500">
             {new Date().getFullYear()} Alternative Song Lyrics. All rights reserved.
           </p>
         </footer>
