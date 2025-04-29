@@ -101,7 +101,7 @@ export function HomePage() {
         <div className="mb-8">
           <AdSense
             client={adsenseClientId}
-            slot="YOUR-SLOT-ID"
+            slot="9423684552"
             style={{ display: 'block', textAlign: 'center' }}
           />
         </div>
@@ -185,7 +185,7 @@ export function HomePage() {
         <div className="mt-8 mb-8">
           <AdSense
             client={adsenseClientId}
-            slot="YOUR-SLOT-ID-2"
+            slot="7532018381"
             style={{ display: 'block', textAlign: 'center' }}
           />
         </div>

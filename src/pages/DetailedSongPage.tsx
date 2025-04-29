@@ -33,11 +33,11 @@ export function DetailedSongPage() {
   });
   return (
     <div className="min-h-screen bg-gray-50 py-8 w-[100vw] text-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="mb-8">
           <button
             onClick={() => navigate(-1)}
-            className="mb-4 flex items-center text-indigo-600 hover:text-indigo-900"
+            className="flex items-center mb-4 text-indigo-600 hover:text-indigo-900"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -50,37 +50,37 @@ export function DetailedSongPage() {
         <div className="mb-8">
           <AdSense
             client={adsenseClientId}
-            slot="YOUR-SLOT-ID-3"
+            slot="8426072310"
             style={{ display: 'block', textAlign: 'center' }}
           />
         </div>
 
         {isLoading ? (
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600" />
+          <div className="flex items-center justify-center min-h-screen bg-gray-50">
+            <div className="w-8 h-8 border-b-2 border-indigo-600 rounded-full animate-spin" />
           </div>
         ) : error || !song ? (
-          <div className="min-h-screen bg-gray-50 p-8">
+          <div className="min-h-screen p-8 bg-gray-50">
             <div className="max-w-3xl mx-auto">
               <button
                 onClick={() => navigate(-1)}
-                className="mb-4 flex items-center text-indigo-600 hover:text-indigo-900"
+                className="flex items-center mb-4 text-indigo-600 hover:text-indigo-900"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
                 Back
               </button>
-              <div className="bg-white shadow rounded-lg p-6">
+              <div className="p-6 bg-white rounded-lg shadow">
                 <div className="text-red-600">Error loading song details</div>
               </div>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div>
       
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Original Version</h2>
+              <h2 className="mb-4 text-2xl font-bold text-slate-900">Original Version</h2>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-500">Song Name</label>
@@ -113,10 +113,10 @@ export function DetailedSongPage() {
                           href={song.originalSongYoutubeLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-1 inline-flex items-center text-indigo-600 hover:text-indigo-900"
+                          className="inline-flex items-center mt-1 text-indigo-600 hover:text-indigo-900"
                           >
                           Watch Video
-                          <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
                         </a>
@@ -141,7 +141,7 @@ export function DetailedSongPage() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-4">Alternative Version</h2>
+              <h2 className="mb-4 text-2xl font-bold text-slate-900">Alternative Version</h2>
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-slate-500">Song Name</label>
@@ -170,10 +170,10 @@ export function DetailedSongPage() {
                       href={song.alternativeSongYoutubeLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 inline-flex items-center text-indigo-600 hover:text-indigo-900"
+                      className="inline-flex items-center mt-1 text-indigo-600 hover:text-indigo-900"
                     >
                       Watch Video
-                      <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </a>
@@ -201,7 +201,7 @@ export function DetailedSongPage() {
         <div className="mt-8">
           <AdSense
             client={adsenseClientId}
-            slot="YOUR-SLOT-ID-4"
+            slot="8720992886"
             style={{ display: 'block', textAlign: 'center' }}
           />
         </div>
